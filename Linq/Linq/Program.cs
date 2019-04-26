@@ -234,7 +234,12 @@ namespace Linq
         /// </summary>
         public static IEnumerable<Persona> Ejercicio5()
         {
-            return Enumerable.Empty<Persona>();
+            return Alumnos
+                .SelectMany(alumno => alumno.Materias)
+                .Select(materia => materia.Profesor)
+                .Where(profesor => profesor.FechaNacimiento.AniosDeEdad() > 32);
+                
+
         }
 
         /// <summary>

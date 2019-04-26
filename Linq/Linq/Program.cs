@@ -178,7 +178,6 @@ namespace Linq
         /// </summary>
         public static IEnumerable<Persona> Ejercicio2()
         {
-
             return from alumno in Alumnos
                    where alumno.Apellido.StartsWith("C") || Convert.ToDecimal(alumno.DNI.Replace(".", "")) < (Decimal)40000000
                    select alumno;
@@ -197,7 +196,6 @@ namespace Linq
         /// </summary>
         public static IEnumerable<Persona> Ejercicio3()
         {
-
             return Ejercicio1()
                 .Cast<Alumno>()
                 .SelectMany(alumno => alumno.Materias)
@@ -205,7 +203,6 @@ namespace Linq
                 .Distinct()
                 .OrderBy(profesor => profesor.Apellido)
                 .ThenBy(profesor => profesor.Nombre);
-
         }
 
         /// <summary>
@@ -234,12 +231,12 @@ namespace Linq
         /// </summary>
         public static IEnumerable<Persona> Ejercicio5()
         {
-            return Alumnos
+            return Ejercicio4()
+                .Cast<Alumno>()
                 .SelectMany(alumno => alumno.Materias)
                 .Select(materia => materia.Profesor)
+                .Distinct()
                 .Where(profesor => profesor.FechaNacimiento.AniosDeEdad() > 32);
-                
-
         }
 
         /// <summary>
@@ -247,12 +244,15 @@ namespace Linq
         /// 
         /// Expected result:
         ///     Ludueña, Andrea
-        ///     Sand, José
+        ///     Sand, Jose
         ///     Montero, Micaela
         /// </summary>
         public static IEnumerable<Persona> Ejercicio6()
         {
-            return Enumerable.Empty<Persona>();
+            return Alumnos
+                .SelectMany(alumno => alumno.Materias)
+                .Select(materia => materia.Profesor)
+                .Where(profesor => profesor.FechaInicioActividad );
         }
 
         /// <summary>

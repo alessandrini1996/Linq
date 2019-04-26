@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Linq
+{
+    public class Examen
+    {
+        /// <summary>
+        /// Nota del examen.
+        /// </summary>
+        public decimal Nota { get; set; }
+
+        /// <summary>
+        /// Fecha del examen.
+        /// </summary>
+        public DateTime Fecha { get; set; }
+
+        /// <summary>
+        /// Materia sobre la cual se trata el examen.
+        /// </summary>
+        public Materia Materia { get; set; }
+    }
+}

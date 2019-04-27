@@ -252,7 +252,8 @@ namespace Linq
             return Alumnos
                 .SelectMany(alumno => alumno.Materias)
                 .Select(materia => materia.Profesor)
-                .Where(profesor => profesor.FechaInicioActividad );
+                .Distinct()
+                .Where(profesor => profesor.FechaInicioActividad.Year < 2010);
         }
 
         /// <summary>
@@ -263,7 +264,9 @@ namespace Linq
         /// </summary>
         public static Persona Ejercicio7()
         {
-            return new Alumno();
+            return Alumnos
+                .OrderByDescending(alumno => alumno.FechaNacimiento)
+                .LastOrDefault();
         }
 
         /// <summary>

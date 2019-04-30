@@ -281,7 +281,10 @@ namespace Linq
         /// </summary>
         public static dynamic Ejercicio8()
         {
-            return Enumerable.Empty<Persona>();
+            return  Alumnos
+                .SelectMany(alumno => alumno.Examenes)
+                .Select(examen => examen.Nota)
+                .Average();
         }
     }
 }

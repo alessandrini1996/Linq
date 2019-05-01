@@ -281,10 +281,15 @@ namespace Linq
         /// </summary>
         public static dynamic Ejercicio8()
         {
-            return  Alumnos
-                .SelectMany(alumno => alumno.Examenes)
-                .Select(examen => examen.Nota)
-                .Average();
+            return Alumnos
+                .OrderBy(alumno => alumno.Examenes.Average(examen => examen.Nota))
+                .Take(2)
+                .Select(alumno => new {
+                    Nombre = alumno.NombreApellido,
+                    CantidadMaterias = alumno.Materias.Count,
+                    CantidadExamenes = alumno.Examenes.Count,
+                    Promedio = alumno.Examenes.Average(examen => examen.Nota)
+                });
         }
     }
 }
